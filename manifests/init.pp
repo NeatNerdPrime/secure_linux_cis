@@ -55,6 +55,7 @@ class secure_linux_cis (
   Enum['cron', 'crond', 'none']           $cron_service,
   Array[Stdlib::Host]                     $time_servers,
   Enum['workstation', 'server']           $profile_type,
+  Enum['firewall', 'firewalld']           $firewall_package,
   Array[String]                           $include_rules           = [],
   Array[String]                           $workstation_rules       = [],
   Array[String]                           $server_rules            = [],
@@ -114,11 +115,20 @@ class secure_linux_cis (
   include $enforced_rules
 
   include ::secure_linux_cis::reboot
+  if (facts.osfamily != 'RedHat' and facts.os.release.major != '8') {
+    firewall { '010 open ssh port':
+      chain  => 'INPUT',
+      dport  => 22,
+      state  => 'NEW',
+      action => 'accept',
+      proto  => 'tcp',
+      tag    => 'cis_firewall_pre',
+    }
 
-  Firewallchain <| tag == 'cis_firewall_pre' |>
-  -> Firewall <| tag == 'cis_firewall_pre' |>
-  -> Firewall <| tag == 'cis_firewall_rule' |>
-  -> Firewall <| tag == 'cis_firewall_post' |>
-  -> Firewallchain <| tag== 'cis_firewall_post' |>
-
+    Firewallchain <| tag == 'cis_firewall_pre' |>
+    -> Firewall <| tag == 'cis_firewall_pre' |>
+    -> Firewall <| tag == 'cis_firewall_rule' |>
+    -> Firewall <| tag == 'cis_firewall_post' |>
+    -> Firewallchain <| tag== 'cis_firewall_post' |>
+  }
 }
