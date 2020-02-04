@@ -20,6 +20,8 @@ describe 'secure_linux_cis' do
         }
       end
 
+      # pp os_facts
+
       # pp os_facts[:os]['name'] + ' ' + os_facts[:os]['release']['major'] + ' ' + os_facts[:os]['architecture'] + ' ' + os_facts[:os]['family']
       # pp os_facts[:os]['family']
 
@@ -46,13 +48,13 @@ describe 'secure_linux_cis' do
       # }
     end
 
-    context "on #{os} no time servers" do
-      # Architecture fact not included
-      os_facts[:os]['architecture'] = 'x64'
+    # context "on #{os} no time servers" do
+    #   # Architecture fact not included
+    #   os_facts[:os]['architecture'] = 'x64'
 
-      let(:facts) { os_facts }
+    #   let(:facts) { os_facts }
 
-      it { is_expected.not_to compile }
-    end
+    #   it { is_expected.not_to compile }
+    # end
   end
 end

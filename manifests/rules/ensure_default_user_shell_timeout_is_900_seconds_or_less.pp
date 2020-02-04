@@ -14,7 +14,7 @@ class secure_linux_cis::rules::ensure_default_user_shell_timeout_is_900_seconds_
     Boolean $enforced = true,
 ) {
   if $enforced {
-    $bashrc = $facts['os']['family'] ? {
+    $bashrc = $facts['osfamily'] ? {
       'RedHat' => '/etc/bashrc',
       'Debian' => '/etc/bash.bashrc',
     }
@@ -32,7 +32,7 @@ class secure_linux_cis::rules::ensure_default_user_shell_timeout_is_900_seconds_
         line => 'export TMOUT',
       }
     }
-    $readonly_file = $facts['os']['family'] ? {
+    $readonly_file = $facts['osfamily'] ? {
       'RedHat' => '/etc/bashrc',
       default  => '/etc/profile',
     }
