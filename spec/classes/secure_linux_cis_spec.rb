@@ -24,7 +24,7 @@ describe 'secure_linux_cis' do
 
       # If you need to specify any operating system specific tests
       case os_facts[:osfamily]
-      when 'Redhat'
+      when 'RedHat'
         case os_facts[:operatingsystemmajrelease]
         when '8'
           it { is_expected.to contain_package('firewalld') }
