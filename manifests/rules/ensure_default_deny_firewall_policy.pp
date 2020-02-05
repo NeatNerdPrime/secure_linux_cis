@@ -27,7 +27,7 @@ class secure_linux_cis::rules::ensure_default_deny_firewall_policy(
     'FORWARD:filter:IPv6',
   ]
   # functionaily for RedHat 8 or later moved to ensure_default_zone_is_set rule
-  if ($enforced and $facts['osfamily'] != 'RedHat' and $facts['operatingsystemmajrelease'] != '8') {
+  if ($enforced and $facts['osfamily'] != 'RedHat' or $facts['operatingsystemmajrelease'] != '8') {
     firewallchain { $filter_rules:
       ensure => present,
       policy => drop,
