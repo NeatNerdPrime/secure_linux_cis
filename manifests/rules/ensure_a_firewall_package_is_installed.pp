@@ -8,6 +8,6 @@ class secure_linux_cis::rules::ensure_a_firewall_package_is_installed(
     Boolean $enforced = true,
 ) {
   if $enforced {
-    include  ::secure_linux_cis::firewall_package
+    include  $::secure_linux_cis::firewall_package
   }
 }

@@ -115,7 +115,8 @@ class secure_linux_cis (
   include $enforced_rules
 
   include ::secure_linux_cis::reboot
-  if ($facts['osfamily'] != 'RedHat' and $facts['operatingsystemmajrelease'] != '8') {
+
+  if ($facts['osfamily'] != 'RedHat' or $facts['operatingsystemmajrelease'] != '8') {
     firewall { '010 open ssh port':
       chain  => 'INPUT',
       dport  => 22,
