@@ -20,12 +20,24 @@ describe 'secure_linux_cis' do
         }
       end
 
-      # pp os_facts
-
-      pp os_facts[:os]['name'] + ' ' + os_facts[:os]['release']['major'] + ' ' + os_facts[:os]['architecture'] + ' ' + os_facts[:os]['family']
-      # pp os_facts[:os]['family']
-
       it { is_expected.to compile }
+
+      # If you need to specify any operating system specific tests
+      case os_facts[:osfamily]
+      when 'Redhat'
+        case os_facts[:operatingsystemmajrelease]
+        when '8'
+          it { is_expected.to contain_package('firewalld') }
+          it { is_expected.to contain_class('secure_linux_cis::rules::ensure_default_zone_is_set') }
+        else
+          it { is_expected.not_to contain_package('firewalld') }
+        end
+      # when 'Debian'
+      #   case os_facts[:operatingsystemmajrelease]
+      #   when '8'
+      #     puts os_facts
+      #   end
+      end
 
       # Do not believe hiera can interprolate properly
 #       it {

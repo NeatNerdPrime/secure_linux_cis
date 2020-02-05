@@ -7,12 +7,7 @@
 class secure_linux_cis::rules::ensure_default_zone(
     Boolean $enforced = true,
 ) {
-  if $enforced {
-    class { '::firewalld':
-      default_zone              => 'drop',
-      purge_direct_rules        => true,
-      purge_direct_chains       => true,
-      purge_direct_passthroughs => true,
-    }
+  if($enforced) {
+    include ::secure_linux_cis::rules::ensure_default_zone_is_set
   }
 }
