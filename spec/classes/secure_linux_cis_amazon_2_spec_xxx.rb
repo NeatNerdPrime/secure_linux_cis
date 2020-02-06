@@ -5,7 +5,7 @@ describe 'secure_linux_cis' do
     supported_os: [
       {
         'operatingsystem'           => 'Amazon',
-        'operatingsystemmajrelease' => ['2'],
+        'operatingsystemmajrelease' => ['4'],
       },
     ],
   }

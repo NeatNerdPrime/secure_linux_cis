@@ -410,6 +410,7 @@ describe 'secure_linux_cis' do
     it { is_expected.to contain_class('secure_linux_cis::rules::ensure_x_window_system_is_not_installed') }
     it { is_expected.to contain_class('secure_linux_cis::rules::ensure_xd_nx_support_is_enabled') }
     it { is_expected.to contain_class('secure_linux_cis::rules::ensure_xinetd_is_not_enabled') }
+    
     it { is_expected.to contain_class('secure_linux_cis::service') }
     
     it { is_expected.to contain_cron__job('cron_aide') }

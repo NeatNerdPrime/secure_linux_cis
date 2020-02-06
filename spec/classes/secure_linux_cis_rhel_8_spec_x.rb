@@ -412,9 +412,11 @@ describe 'secure_linux_cis' do
     it { is_expected.to contain_class('secure_linux_cis::rules::ensure_x_window_system_is_not_installed') }
     it { is_expected.to contain_class('secure_linux_cis::rules::ensure_xinetd_is_not_installed') }
     it { is_expected.to contain_class('secure_linux_cis::rules::select_authselect_profile') }
+
     it { is_expected.to contain_class('secure_linux_cis::service') }
 
     it { is_expected.to contain_cron__job('cron_aide') }
+    
     it { is_expected.to contain_cron__monthly('security-update') }
 
     it { is_expected.to contain_exec('create_aide_database') }
