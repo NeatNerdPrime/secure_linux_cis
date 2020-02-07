@@ -16,6 +16,8 @@ end
 ruby_version_segments = Gem::Version.new(RUBY_VERSION.dup).segments
 minor_version = ruby_version_segments[0..1].join('.')
 
+gem 'facterdb', :git => 'https://github.com/fervidus/facterdb.git'
+
 group :development do
   gem "fast_gettext", '1.1.0',                                   require: false if Gem::Version.new(RUBY_VERSION.dup) < Gem::Version.new('2.1.0')
   gem "fast_gettext",                                            require: false if Gem::Version.new(RUBY_VERSION.dup) >= Gem::Version.new('2.1.0')
@@ -32,8 +34,7 @@ group :development do
 end
 
 puppet_version = ENV['PUPPET_GEM_VERSION']
-#facter_version = ENV['FACTER_GEM_VERSION']
-facter_version = '2.5.7'
+facter_version = ENV['FACTER_GEM_VERSION']
 hiera_version = ENV['HIERA_GEM_VERSION']
 
 gems = {}
