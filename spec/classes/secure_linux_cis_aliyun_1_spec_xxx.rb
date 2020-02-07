@@ -4,13 +4,16 @@ describe 'secure_linux_cis' do
   test_on = {
     supported_os: [
       {
-        'operatingsystem'           => 'Amazon',
-        'operatingsystemmajrelease' => ['2016'],
+        'operatingsystem'           => 'Aliyun',
+        'operatingsystemmajrelease' => ['1'],
       },
     ],
   }
 
   on_supported_os(test_on).each do |os, os_facts|
+
+    puts "\n##########>  #{os}  <##########\n\n"
+    
     # Architecture fact not included
     os_facts[:os]['architecture'] = 'x64'
 

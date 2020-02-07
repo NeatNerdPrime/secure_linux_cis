@@ -11,6 +11,9 @@ describe 'secure_linux_cis' do
   }
 
   on_supported_os(test_on).each do |os, os_facts|
+
+    puts "\n##########>  #{os}  <##########\n\n"
+
     # Architecture fact not included
     os_facts[:os]['architecture'] = 'x64'
 
