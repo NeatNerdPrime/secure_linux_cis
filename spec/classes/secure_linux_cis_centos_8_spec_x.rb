@@ -218,6 +218,7 @@ describe 'secure_linux_cis' do
     it { is_expected.to contain_class('secure_linux_cis::distribution::centos8::cis_6_2_7') }
     it { is_expected.to contain_class('secure_linux_cis::distribution::centos8::cis_6_2_8') }
     it { is_expected.to contain_class('secure_linux_cis::distribution::centos8::cis_6_2_9') }
+
     it { is_expected.to contain_class('secure_linux_cis::rules::create_custom_authselect_profile') }
     it { is_expected.to contain_class('secure_linux_cis::rules::disable_usb_storage') }
     it { is_expected.to contain_class('secure_linux_cis::rules::ensure_a_firewall_package_is_installed') }
