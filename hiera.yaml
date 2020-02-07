@@ -9,11 +9,14 @@ hierarchy:
   - name: "OS Major Release"
     path: "os/%{facts.operatingsystem}/version/%{facts.operatingsystemmajrelease}.yaml"
 
+  - name: "OS Structured Fact"
+    path: "os/%{facts.os.name}/version/%{facts.os.release.major}.yaml"
+
   - name: "OS Name"
     path: "os/%{facts.operatingsystem}.yaml"
 
   - name: "OS Family"
     path: "osfamily/%{facts.osfamily}.yaml"
 
-  - name: "common"
+  - name: "Common data"
     path: "common.yaml"

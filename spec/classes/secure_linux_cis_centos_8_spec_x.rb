@@ -260,6 +260,7 @@ describe 'secure_linux_cis' do
     it { is_expected.to contain_class('secure_linux_cis::rules::ensure_unnecessary_services_and_ports_are_not_accepted') }
     it { is_expected.to contain_class('secure_linux_cis::rules::ensure_xinetd_is_not_installed') }
     it { is_expected.to contain_class('secure_linux_cis::rules::select_authselect_profile') }
+
     it { is_expected.to contain_file_line('/etc/bashrc readonly tmout') }
     it { is_expected.to contain_file_line('/etc/bashrc_export_tmout') }
     it { is_expected.to contain_file_line('/etc/bashrc_tmout') }
@@ -267,6 +268,7 @@ describe 'secure_linux_cis' do
     it { is_expected.to contain_file_line('/etc/profile_tmout') }
     it { is_expected.to contain_file_line('sudo_log_file') }
     it { is_expected.to contain_file_line('sudo_rule_pry') }
+    
     it { is_expected.to contain_firewall('001 IPv6 accept all input to lo interface') }
     it { is_expected.to contain_firewall('002 IPv6 accept all output to lo interface') }
     it { is_expected.to contain_firewall('003 IPv6 drop all to lo ::/0') }
@@ -277,7 +279,9 @@ describe 'secure_linux_cis' do
     it { is_expected.to contain_firewall('008 accept estalished input IPv6 udp connections') }
     it { is_expected.to contain_firewall('009 accept estalished input IPv6 icmp connections') }
     it { is_expected.to contain_firewall('010 open IPv6 ssh port') }
+    
     it { is_expected.to contain_kmod__install('usb-storage') }
+    
     it { is_expected.to contain_notify('ensure_a_table_exists Still needs to be implemented.') }
     it { is_expected.to contain_notify('ensure_base_chains_exist Still needs to be implemented.') }
     it { is_expected.to contain_notify('ensure_iptables_are_flushed Still needs to be implemented.') }
@@ -286,5 +290,6 @@ describe 'secure_linux_cis' do
     it { is_expected.to contain_secure_linux_cis__mount_options('/tmp-mode=1777,strictatime,noexec,nodev,nosuid') }
     it { is_expected.to contain_service('iptables') }
     it { is_expected.to contain_service('nftables') }
+    
   end
 end
