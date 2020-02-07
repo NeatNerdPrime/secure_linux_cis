@@ -16,6 +16,7 @@ class secure_linux_cis::rules::ensure_default_user_shell_timeout_is_900_seconds_
   if $enforced {
     $bashrc = $facts['osfamily'] ? {
       'RedHat' => '/etc/bashrc',
+      'Suse'   => '/etc/bash.bashrc',
       'Debian' => '/etc/bash.bashrc',
     }
     $paths = [

@@ -40,6 +40,7 @@ class secure_linux_cis::rules::ensure_password_creation_requirements_are_configu
         'system-auth',
         'password-auth',
       ],
+      'Suse'   => ['common-password'],
       'Debian' => ['common-password'],
     }
     if $::secure_linux_cis::minlen == 0 and $::secure_linux_cis::dcredit == 0 and $::secure_linux_cis::ucredit == 0 and

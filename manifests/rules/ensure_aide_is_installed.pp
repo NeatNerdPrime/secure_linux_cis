@@ -35,6 +35,14 @@ class secure_linux_cis::rules::ensure_aide_is_installed(
           logoutput => true,
         }
       }
+      'Suse': {
+        exec { 'create_aide_database':
+          command   => 'aide -i',
+          creates   => ['/var/lib/aide/aide.db.new', '/var/lib/aide/aide.db'],
+          path      => '/sbin:/bin:/usr/sbin:/usr/bin',
+          logoutput => true,
+        }
+      }
       'Debian': {
         exec { 'create_aide_database':
           command   => 'aideinit',
